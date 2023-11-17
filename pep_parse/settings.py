@@ -1,4 +1,4 @@
-from .constants import BASE_DIR, OUTPUT_DIR_NAME
+from .constants import OUTPUT_DIR_NAME
 
 
 BOT_NAME = 'pep_parse'
@@ -13,8 +13,8 @@ ITEM_PIPELINES = {
 }
 
 FEEDS = {
-    # f'{OUTPUT_DIR_NAME}/pep_%(time)s.csv': {
-    BASE_DIR / OUTPUT_DIR_NAME / 'pep_%(time)s.csv': {
+    # BASE_DIR / OUTPUT_DIR_NAME / 'pep_%(time)s.csv': {
+    f'{OUTPUT_DIR_NAME}/pep_%(time)s.csv': {
         'format': 'csv',
         'fields': ['number', 'name', 'status'],
         'overwrite': True
