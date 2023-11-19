@@ -1,22 +1,26 @@
-from .constants import OUTPUT_DIR_NAME
+from pathlib import Path
 
+
+BASE_DIR = Path(__file__).parent.parent
+OUTPUT_DIR_NAME = 'results'
 
 BOT_NAME = 'pep_parse'
 
-SPIDER_MODULES = ['pep_parse.spiders']
-NEWSPIDER_MODULE = 'pep_parse.spiders'
+NEWSPIDER_MODULE = f'{BOT_NAME}.spiders'
+SPIDER_MODULES = [NEWSPIDER_MODULE]
 
 ROBOTSTXT_OBEY = True
 
 ITEM_PIPELINES = {
-    'pep_parse.pipelines.PepParsePipeline': 300,
+    f'{BOT_NAME}.pipelines.PepParsePipeline': 300,
 }
 
 FEEDS = {
-    # BASE_DIR / OUTPUT_DIR_NAME / 'pep_%(time)s.csv': {
     f'{OUTPUT_DIR_NAME}/pep_%(time)s.csv': {
         'format': 'csv',
         'fields': ['number', 'name', 'status'],
         'overwrite': True
     },
 }
+
+DATE_TIME_FORMAT = '%Y-%m-%dT%H-%M-%S'
